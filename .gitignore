@@ -1,5 +1,7 @@
 *
 !*/
+.vscode/
+java8learn/
 !**.java
 !**.txt
 !**.json
