@@ -1,6 +1,7 @@
 *
 !*/
 .vscode/
+bin/
 java8learn/
 !**.java
 !**.txt
