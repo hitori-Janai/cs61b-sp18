@@ -52,3 +52,4 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 *.gitignore
+proj0/out/**/*.txt
