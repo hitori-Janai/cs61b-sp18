@@ -26,7 +26,7 @@ public class NBody {
         String filename = args[2];
 
         double radius = readRadius(filename);
-        System.out.println(radius);
+        // System.out.println(radius);
         Planet[] planets = readPlanets(filename);
 
         StdDraw.enableDoubleBuffering();
@@ -34,7 +34,7 @@ public class NBody {
         StdDraw.picture(0, 0, "images/starfield.jpg");
         for (Planet planet : planets) {
             planet.draw();
-            System.out.println(planet);
+            // System.out.println(planet);
         }
 
         for (double time = 0; time < T; time += dt) {
