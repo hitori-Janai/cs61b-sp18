@@ -1,7 +1,7 @@
 public class ArrayDeque<T> {
     private int size;
     private int nextFirst;
-    public Object[] items;
+    private Object[] items;
     private int nextLast;
     static final double USAGE_FACTOR = 0.25;
 
@@ -43,7 +43,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return;
         }
-        int i = (nextFirst + 1) % items.length;// start
+        int i = (nextFirst + 1) % items.length; // start
         int end = (nextLast + items.length - 1) % items.length;
         for (; i != end; i = (i + 1) % items.length) {
             System.out.print(items[i] + " ");

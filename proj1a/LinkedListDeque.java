@@ -4,7 +4,7 @@ public class LinkedListDeque<T> {
         Node next = null;
         T item = null;
 
-        public Node(LinkedListDeque<T>.Node prev, LinkedListDeque<T>.Node next, T item) {
+        Node(LinkedListDeque<T>.Node prev, LinkedListDeque<T>.Node next, T item) {
             this.prev = prev;
             this.next = next;
             this.item = item;
@@ -25,7 +25,7 @@ public class LinkedListDeque<T> {
 
     /**
      * must not involve any looping or recursion. take “constant time”
-     * 
+     *
      * @param item
      */
     public void addFirst(T item) {
@@ -52,7 +52,7 @@ public class LinkedListDeque<T> {
 
     /**
      * constant time
-     * 
+     *
      * @return
      */
     public int size() {
@@ -92,7 +92,7 @@ public class LinkedListDeque<T> {
 
     /**
      * iteration
-     * 
+     *
      * @param index [0,size)
      * @return
      */
@@ -101,14 +101,15 @@ public class LinkedListDeque<T> {
             return null;
         }
         Node n = sentinel;
-        for (int i = 0; i < index + 1; i++)
+        for (int i = 0; i < index + 1; i++) {
             n = sentinel.next;
+        }
         return n.item;
     }
 
     /**
      * Same as get, but uses recursion.
-     * 
+     *
      * @param index
      * @return
      */

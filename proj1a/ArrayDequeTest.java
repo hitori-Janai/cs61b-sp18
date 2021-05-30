@@ -10,7 +10,7 @@ public class ArrayDequeTest {
     public void bye() {
         System.out.println("bye.........");
     }
-    
+
     @Test
     public void testAdd() {
         assertEquals(true, ad.isEmpty());
@@ -41,10 +41,10 @@ public class ArrayDequeTest {
         System.out.println(ad.get(3));
         System.out.println(ad.get(4));
 
-
     }
+
     @Test
-    public void testRemove(){
+    public void testRemove() {
         ad.addFirst(100);
         ad.addFirst(200);
         ad.addLast(300);
@@ -56,9 +56,9 @@ public class ArrayDequeTest {
         print();
     }
 
-    public void print(){
+    public void print() {
         ad.printDeque();
-        System.out.println(" :"+ad.items.length);
+        System.out.println(" :"/* +ad.items.length */);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ArrayDequeTest {
         for (int i = 0; i < 10000; i++) {
             ad.addFirst(i);
         }
-        System.out.println(ad.items.length);
+        // System.out.println(ad.items.length);
         while (!ad.isEmpty()) {
             ad.removeLast();
         }
