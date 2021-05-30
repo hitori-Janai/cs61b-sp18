@@ -3,7 +3,7 @@ public class ArrayDeque<T> {
     private int nextFirst;
     private Object[] items;
     private int nextLast;
-    static final double USAGE_FACTOR = 0.25;
+    private static final double USAGE_FACTOR = 0.25;
 
     public ArrayDeque() {
         items = new Object[8];
@@ -102,7 +102,9 @@ public class ArrayDeque<T> {
         items = newItems;
     }
 
-    // 利用率检查是否大于0.25;
+    /**
+     * @return利用率检查是否大于0.25;
+     */
     private boolean usageCheck() {
         return items.length <= 16 || size > items.length * USAGE_FACTOR;
     }

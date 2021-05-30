@@ -131,4 +131,18 @@ public class LinkedListDequeTest {
     public void bye() {
         System.out.println("\nbye");
     }
+
+    @Test
+    public void testGet2() {
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
+        lld1.addLast(0);
+        System.out.println(lld1.get(0));
+        lld1.printDeque();
+        System.out.println();
+        lld1.addFirst(2);
+        lld1.printDeque();
+        System.out.println();
+        System.out.println(lld1.get(1));
+        
+    }
 }
