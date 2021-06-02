@@ -7,8 +7,7 @@ public class PalindromeFinder {
 
     public static void main(String[] args) {
         int minLength = 4;
-        // In in = new In("../library-sp18/data/words.txt");
-        In in = new In("C:\\Users\\L\\Documents\\GitHub\\cs61b-sp18\\library-sp18\\data\\words.txt");
+        In in = new In("../library-sp18/data/words.txt");
         Palindrome palindrome = new Palindrome();
 
         while (!in.isEmpty()) {
