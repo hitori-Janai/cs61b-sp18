@@ -20,6 +20,10 @@ public class GuitarString {
         //       Your buffer should be initially filled with zeros.
         long capacity = Math.round(SR / frequency);
         buffer = new ArrayRingBuffer<>((int) capacity);
+        while (!buffer.isFull()) {
+            buffer.enqueue(0.0);
+        }
+
     }
 
     /* Pluck the guitar string by replacing the buffer with white noise. */
