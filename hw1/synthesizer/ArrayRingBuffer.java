@@ -2,8 +2,6 @@ package synthesizer;
 
 import java.util.Iterator;
 
-//TODO: Make sure to make this class and all of its methods public
-//TODO: Make sure to make this class extend AbstractBoundedQueue<t>
 public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next dequeue or peek. */
     private int first; // index for the next dequeue or peek
@@ -17,7 +15,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      */
     @SuppressWarnings("unchecked")
     public ArrayRingBuffer(int capacity) {
-        // TODO: Create new array with capacity elements.
         rb = (T[]) new Object[capacity];
         //       first, last, and fillCount should all be set to 0.
         first = last = fillCount = 0;
@@ -33,7 +30,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * covered Monday.
      */
     public void enqueue(T x) {
-        // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
         if (isFull()) {
             throw new RuntimeException("Ring buffer overflow");
         }
@@ -48,7 +44,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * covered Monday.
      */
     public T dequeue() {
-        // TODO: Dequeue the first item. Don't forget to decrease fillCount and update 
         if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
         }
@@ -62,14 +57,12 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * Return oldest item, but don't remove it.
      */
     public T peek() {
-        // TODO: Return the first item. None of your instance variables should change.
         if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
         }
         return rb[first];
     }
 
-    // TODO: When you get to part 5, implement the needed code to support iteration.
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
