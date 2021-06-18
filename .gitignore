@@ -53,3 +53,4 @@ $RECYCLE.BIN/
 *.lnk
 *.gitignore
 proj0/out/**/*.txt
+proj2/out/

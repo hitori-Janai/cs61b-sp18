@@ -2,6 +2,11 @@ package byog.Core;
 
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
+// import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.introcs.StdDraw;
+
+import java.awt.Color;
+import java.awt.Font;
 
 public class Game {
     TERenderer ter = new TERenderer();
@@ -13,6 +18,38 @@ public class Game {
      * Method used for playing a fresh game. The game should start from the main menu.
      */
     public void playWithKeyboard() {
+        drawStartUI();
+    }
+
+    /**
+     * 开始画面
+     */
+    private void drawStartUI() {
+        initializeCanvas();
+
+        Font font = new Font("Monaco", Font.PLAIN, 60);
+        StdDraw.setFont(font);
+        StdDraw.text(WIDTH / 2d, 3 * HEIGHT / 4d, "CS61B: THE GAME");
+
+        Font smallFont = new Font("Monaco", Font.PLAIN, 30);
+        StdDraw.setFont(smallFont);
+        StdDraw.text(WIDTH / 2, HEIGHT / 4 + 2, "New Game (N)");
+        StdDraw.text(WIDTH / 2, HEIGHT / 4, "Load Game (L)");
+        StdDraw.text(WIDTH / 2, HEIGHT / 4 - 2, "Quit (Q)");
+
+        StdDraw.show();
+    }
+
+    /**
+     * 启动画布
+     */
+    private void initializeCanvas() {
+        StdDraw.setCanvasSize(WIDTH * 16, (HEIGHT + 1) * 16);
+        StdDraw.setXscale(0, WIDTH);
+        StdDraw.setYscale(0, (HEIGHT + 1));
+        StdDraw.clear(Color.BLACK);
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setPenColor(Color.WHITE);
     }
 
     /**
