@@ -10,9 +10,9 @@ public class Percolation {
     private boolean[][] grid;
     private int topSite;
     private int bottomSite;
-    private WeightedQuickUnionUF UF;
+    private WeightedQuickUnionUF uF;
     //用来避免backwash的UF
-    private WeightedQuickUnionUF UFwithoutBackWash;
+    private WeightedQuickUnionUF uFwithoutBackWash;
     private int numberOfOpenSites;
 
     // create N-by-N grid, with all sites initially blocked
@@ -22,19 +22,21 @@ public class Percolation {
         }
         this.N = N;
         this.numberOfOpenSites = 0;
-        UF = new WeightedQuickUnionUF(N * N + 2);
+        uF = new WeightedQuickUnionUF(N * N + 2);
         topSite = N * N;
         bottomSite = N * N + 1;
-        UFwithoutBackWash = new WeightedQuickUnionUF(N * N + 1);
+        uFwithoutBackWash = new WeightedQuickUnionUF(N * N + 1);
         grid = new boolean[N][N];
     }
 
     // open the site (row, col) if it is not open already
     public void open(int row, int col) {
-        if (row < 0 || row >= N || col < 0 || col >= N)
+        if (row < 0 || row >= N || col < 0 || col >= N) {
             throw new IllegalArgumentException("row and col must between 0 and N-1");
-        if (isOpen(row, col))
+        }
+        if (isOpen(row, col)) {
             return;
+        }
         grid[row][col] = true;
         numberOfOpenSites++;
         connectAround(row, col);
@@ -42,14 +44,18 @@ public class Percolation {
 
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
-        if (row < 0 || row >= N || col < 0 || col >= N)
+        if (row < 0 || row >= N || col < 0 || col >= N) {
             throw new IllegalArgumentException("row and col must between 0 and N-1");
+        }
         return grid[row][col];
     }
 
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
-        return UFwithoutBackWash.connected(xyTo1D(row, col), topSite);
+        if (row < 0 || row >= N || col < 0 || col >= N) {
+            throw new IllegalArgumentException("row and col must between 0 and N-1");
+        }
+        return uFwithoutBackWash.connected(xyTo1D(row, col), topSite);
     }
 
     // number of open sites
@@ -59,7 +65,7 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
-        return UF.connected(bottomSite, topSite);
+        return uF.connected(bottomSite, topSite);
     }
 
     // use for unit testing (not required)
@@ -87,7 +93,7 @@ public class Percolation {
      */
     private void connectAround(int row, int col) {
         // ↓👇,→👉,↑👆,←👈,(x,y)
-        int next[][] = new int[][] { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+        int[][] next = new int[][] { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
         for (int[] is : next) {
             //(x,y)先横再竖 (row,col) 先竖在横  全排列不在意顺序
             int nextGridRow = row + is[1];
@@ -95,13 +101,13 @@ public class Percolation {
             if (nextGridCol < 0 || nextGridCol >= N) {
                 // 左右越界,什么都不做
             } else if (nextGridRow == -1) {
-                UF.union(xyTo1D(row, col), topSite);
-                UFwithoutBackWash.union(xyTo1D(row, col), topSite);
+                uF.union(xyTo1D(row, col), topSite);
+                uFwithoutBackWash.union(xyTo1D(row, col), topSite);
             } else if (nextGridRow == N) {
-                UF.union(xyTo1D(row, col), bottomSite);
+                uF.union(xyTo1D(row, col), bottomSite);
             } else if (isOpen(nextGridRow, nextGridCol)) {
-                UF.union(xyTo1D(row, col), xyTo1D(nextGridRow, nextGridCol));
-                UFwithoutBackWash.union(xyTo1D(row, col), xyTo1D(nextGridRow, nextGridCol));
+                uF.union(xyTo1D(row, col), xyTo1D(nextGridRow, nextGridCol));
+                uFwithoutBackWash.union(xyTo1D(row, col), xyTo1D(nextGridRow, nextGridCol));
             }
         }
 
